@@ -10,6 +10,8 @@ class home_page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppCubit cubit =AppCubit.get(context);
+    AppCubit.getGarages();
+    cubit.getGaragesforuser();
     cubit.getUserData();
     return Scaffold(
       body: SingleChildScrollView(

@@ -28,7 +28,7 @@ class AppCubit extends Cubit<AppStates> {
     profile(),
     home_page(),
     customerNotification(),
-    add_visitor(),
+    addgarages(),
 
   ];
   bool isinital= false;
@@ -81,10 +81,30 @@ Future <void> init() async
 
 
   static List<garage_model> garages = [];
-
+  static List<garage_model> garages1 = [];
   static void getGarages()
   {
     garages.clear();
+    FirebaseFirestore.instance
+        .collection('garages')
+        .get()
+      .then((value)
+  {
+  value.docs.forEach((element)
+  {
+  if(element.data()['oid']=='kg5dmGOKKED5qvfhZgW8')
+  garages.add(garage_model.fromJson(element.data()));
+  });
+
+  //emit(GetgaragesSuccessState());
+  })
+      .catchError((error){
+  //emit(GetgaragesErrorState());
+  });
+}
+   void getGaragesforuser()
+  {
+    garages1.clear();
     FirebaseFirestore.instance
         .collection('garages')
         .get()
@@ -92,14 +112,13 @@ Future <void> init() async
     {
       value.docs.forEach((element)
       {
-        if(element.data()['oid']=='kg5dmGOKKED5qvfhZgW8')
-          garages.add(garage_model.fromJson(element.data()));
+          garages1.add(garage_model.fromJson(element.data()));
       });
 
-      //emit(GetgaragesSuccessState());
+      emit(GetgaragesSuccessState());
     })
         .catchError((error){
-      //emit(GetgaragesErrorState());
+      emit(GetgaragesErrorState());
     });
   }
 

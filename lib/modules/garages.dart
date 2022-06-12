@@ -38,6 +38,7 @@ var fozi=context;
           },
           builder: (BuildContext context, AppStates state){
             cubit   =AppCubit.get(context);
+
             return Scaffold(
             key: scaffoldkey,
             body: SingleChildScrollView(

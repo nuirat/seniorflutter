@@ -19,6 +19,9 @@ class AppDeleteDatabaseState extends AppStates {}
 class AppChangeBottomSheetState extends AppStates {}
 
 class getprofilelodaing extends AppStates {}
+class GetgaragesSuccessState extends AppStates{}
+class GetgaragesErrorState extends AppStates{}
+
 class getprofilesucsses extends AppStates {}
 class getprofileerror extends AppStates {
   String error='';
